@@ -12,10 +12,10 @@ infection_level({_CityName,_Neighbours,State},Disease) ->
     maps:get(Disease, State, 0).
 
 infect({CityName,Neighbours,State}, Disease) ->
-    NewLevel = maps:get(Disease, State, 0) + 1,
-    case NewLevel >3 of
-        true -> outbreak ;
-        false -> 
-            NewState = State#{Disease => NewLevel},
+    OldLevel = maps:get(Disease, State, 0),
+    case OldLevel of
+        3 -> outbreak ;
+        _ -> 
+            NewState = State#{Disease => OldLevel + 1},
             {infected, {CityName, Neighbours, NewState}}
     end.
