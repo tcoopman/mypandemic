@@ -6,12 +6,13 @@
 %% API
 %% don't forget to put the functions (with their arity)
 %% you want public here
--export([divide/2]).
+-export([divide/2,sum/1,sum/2]).
 -define(PLUS_SIGN, '+').
 -define(DIVISION_SIGN, '/').
 
 %% test 2 & 3 -> edit this function
-divide(A, B) -> 3.
+divide(_A,0) -> undefined;
+divide(A, B) -> A/B.
 
 %% test 4 & 5 -> edit this function
 %%
@@ -21,7 +22,12 @@ divide(A, B) -> 3.
 %% (A1+B1,A2+B2,A3+B3)
 %%
 %% hint 2 : is this function public ?
+sum([]) -> 0 ;
+sum([H|T]) -> H + sum(T).
+sum({A1, A2, A3}, {B1, B2, B3}) ->
+  {A1+B1, A2+B2, A3+B3};
 sum(A, B) -> A + B.
+
 
 %% test 6 ->
 %% is sum(List) really the same function as previous ?
